@@ -10,4 +10,5 @@ steps:
       from_secret: BOT_TOKEN
   commands:
   - git clone https://github.com/rama982/kernel_xiaomi_beryllium --depth=1 kernel
-  - cd kernel && bash build_kernel.sh beryllium $BOT_TOKEN -c
+  - cd kernel
+  - yes | bash build_kernel.sh beryllium $BOT_TOKEN -c
