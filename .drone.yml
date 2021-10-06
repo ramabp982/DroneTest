@@ -4,6 +4,10 @@ name: default
 
 steps:
 - name: test
-  image: ubuntu
+  image: xyzuan/xdocker
+  environment:
+    BOT_TOKEN:
+      from_secret: BOT_TOKEN
   commands:
-  - echo "Hello World"
+  - git clone https://github.com/rama982/kernel_xiaomi_beryllium --depth=1 kernel
+  - cd kernel && bash build_kernel.sh beryllium $BOT_TOKEN -c
