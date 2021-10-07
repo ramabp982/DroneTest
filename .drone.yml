@@ -6,9 +6,20 @@ steps:
 - name: test
   image: xyzuan/xdocker
   environment:
-    BOT_TOKEN:
+    LLVM_NAME:
+      from_secret: LLVM_NAME
+    TG_TOKEN:
       from_secret: BOT_TOKEN
+    TG_CHAT_ID:
+      from_secret: TG_CHAT_ID
+    GH_USERNAME:
+      from_secret: GH_USERNAME
+    GH_EMAIL:
+      from_secret: GH_EMAIL
+    GH_TOKEN:
+      from_secret: GH_TOKEN
+    GH_PUSH_REPO_URL:
+      from_secret: GH_PUSH_REPO_URL
   commands:
-  - git clone https://github.com/rama982/kernel_xiaomi_beryllium --depth=1 kernel
-  - cd kernel
-  - yes | bash build_kernel.sh beryllium $BOT_TOKEN -c
+  - git clone https://github.com/rama982/llvmTC --depth=1
+  - cd llvmTC && bash build-tc.sh
