@@ -1,14 +1,16 @@
 kind: pipeline
 type: docker
-name: script
+name: build_kernel
 
 steps:
-- name: build_kernel
+- name: do_mt6768
   image: xyzuan/xdocker
   environment:
     BOT_TOKEN:
       from_secret: BOT_TOKEN
   commands:
-  - git clone https://github.com/rama982/kernel_xiaomi_rosemary -b f2fs-merge --depth=1 kernel
+  - git clone https://github.com/rama982/kernel_xiaomi_mt6768 -b tmp-rb --depth=1 kernel
   - cd kernel
-  - yes | bash build_kernel.sh rosemary $BOT_TOKEN -c --img
+  - yes | bash build_kernel.sh merlin $BOT_TOKEN -c
+  - yes | bash build_kernel.sh lancelot $BOT_TOKEN
+  - yes | bash build_kernel.sh shiva $BOT_TOKEN
