@@ -1,14 +1,14 @@
 kind: pipeline
 type: docker
-name: default
+name: script
 
 steps:
-- name: test
+- name: build_kernel
   image: xyzuan/xdocker
   environment:
     BOT_TOKEN:
       from_secret: BOT_TOKEN
   commands:
-  - git clone https://github.com/rama982/kernel_xiaomi_beryllium --depth=1 kernel
+  - git clone https://github.com/rama982/kernel_xiaomi_rosemary -b f2fs-merge --depth=1 kernel
   - cd kernel
-  - yes | bash build_kernel.sh beryllium $BOT_TOKEN -c
+  - yes | bash build_kernel.sh rosemary $BOT_TOKEN -c --img
